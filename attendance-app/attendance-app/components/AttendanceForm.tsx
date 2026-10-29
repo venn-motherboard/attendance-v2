@@ -46,7 +46,7 @@ export default function AttendanceForm({ sessionId, subject }: { sessionId: stri
     try {
       const { challengeId, options } = await call("/api/webauthn/register/options");
       const response = await startRegistration({ optionsJSON: options });
-      await call("/api/webauthn/register/verify", { challengeId, response });
+         await call("/api/webauthn/register/verify", "POST", { challengeId, response });
       setMsg({ ok: true, text: "Passkey registered. You can now verify your attendance." });
     } catch (e: any) {
       setFailReason("enrollment_failed");
